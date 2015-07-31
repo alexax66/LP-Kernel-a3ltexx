@@ -1,3 +1,9 @@
+#######################################
+#       Alexax'es tweeks              #
+#######################################
+# CONFIG_LOCALVERSION_AUTO is not set
+
+
 CONFIG_DEFAULT_CFQ=y
 
 # Support LZ4 KERNEL Compress
