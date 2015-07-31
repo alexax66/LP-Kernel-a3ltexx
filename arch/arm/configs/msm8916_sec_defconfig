@@ -2,7 +2,7 @@
 #       Alexax'es tweeks              #
 #######################################
 # CONFIG_LOCALVERSION_AUTO is not set
-
+CONFIG_LOCALVERSION="-UNOFFICIAL-LP-0.0.1"
 
 CONFIG_DEFAULT_CFQ=y
 
