@@ -946,11 +946,11 @@ static int memcmp_pages(struct page *page1, struct page *page2)
 
 	addr1 = kmap_atomic(page1);
 	addr2 = kmap_atomic(page2);
+#ifdef CONFIG_KSM_MEMCMP
+	ret = memcmp_ksm(addr1, addr2, PAGE_SIZE);
+#else
 #ifdef CONFIG_ADAPTIVE_KSM
 	ret = page_memcmp((long *)addr1, (long *)addr2, PAGE_SIZE);
-#else
-#ifdef CONFIG_KSM_MEMCMP
-        ret = memcmp_ksm(addr1, addr2, PAGE_SIZE);
 #else
 	ret = memcmp(addr1, addr2, PAGE_SIZE);
 #endif
