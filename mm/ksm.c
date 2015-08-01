@@ -935,6 +935,10 @@ static u32 calc_checksum(struct page *page)
 extern int page_memcmp(const void *,const void *,__kernel_size_t);
 #endif
 
+#ifdef CONFIG_KSM_MEMCMP
+extern int memcmp_ksm(const void *,const void *,__kernel_size_t);
+#endif
+
 static int memcmp_pages(struct page *page1, struct page *page2)
 {
 	char *addr1, *addr2;
@@ -945,7 +949,11 @@ static int memcmp_pages(struct page *page1, struct page *page2)
 #ifdef CONFIG_ADAPTIVE_KSM
 	ret = page_memcmp((long *)addr1, (long *)addr2, PAGE_SIZE);
 #else
+#ifdef CONFIG_KSM_MEMCMP
+        ret = memcmp_ksm(addr1, addr2, PAGE_SIZE);
+#else
 	ret = memcmp(addr1, addr2, PAGE_SIZE);
+#endif
 #endif
 	kunmap_atomic(addr2);
 	kunmap_atomic(addr1);

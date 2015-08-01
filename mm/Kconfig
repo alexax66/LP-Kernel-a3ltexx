@@ -322,6 +322,12 @@ config ADAPTIVE_KSM
 	help
 	  Enable Adaptive KSM
 
+config KSM_MEMCMP
+	bool "memcmp for KSM"
+	depends on KSM
+	help
+	  Using memcmp function that is only for KSM
+
 config DEFAULT_MMAP_MIN_ADDR
         int "Low address space to protect from user allocation"
 	depends on MMU
