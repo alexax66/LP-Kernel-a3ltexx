@@ -40,10 +40,10 @@
 
 static inline int z_decompress_safe(const unsigned char *src, size_t src_len,
 			unsigned char *dest, size_t *dest_len)
-
+{
 #ifdef CONFIG_ZRAM_LZ4_COMPRESS
-return lz4_decompress_unknownoutputsize(src, src_len, dest, dest_len);
-+#else
+	return lz4_decompress_unknownoutputsize(src, src_len, dest, dest_len);
+#else
 	return lzo1x_decompress_safe(src, src_len, dest, dest_len);
 #endif
 }
